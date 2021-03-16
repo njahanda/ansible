@@ -1,6 +1,6 @@
 ---
-- name: Reboot remote machine
-  hosts: "{{ host }}"
+#- name: Reboot remote machine
+#  hosts: "{{ host }}"
 
   tasks:
   - name: Reboot server in order for changes to take place
