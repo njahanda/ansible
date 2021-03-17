@@ -1,7 +1,7 @@
 ---
 
 - name: Install docker on a Centos 7 machine
-  #hosts: host1
+  hosts: all
 
   tasks:
   - name: upgrade all packages
