@@ -1,0 +1,43 @@
+---
+- name: Install docker on a Centos 7 machine
+  hosts: host1
+
+  tasks:
+  - name: upgrade all packages
+    yum: name=* state=latest
+
+  #Install pre-requisite packages
+  - name: Install yum utils
+    yum:
+      name: yum-utils
+      state: latest
+
+  - name: Install device-mapper-persistent-data
+    yum:
+      name: device-mapper-persistent-data
+      state: latest
+
+  - name: Install lvm2
+    yum:
+      name: lvm2
+      state: latest
+
+  - name: Add Docker CE repo
+    get_url:
+      url: https://download.docker.com/linux/centos/docker-ce.repo
+      dest: /etc/yum.repos.d/docker-ce.repo
+
+  - name: Install Docker
+    yum: name=docker state=latest
+    
+ - name: Start and enable the Docker daemon
+    service: name=docker state=started enabled=yes
+
+  - name: Test Docker with hello world example
+    shell: "docker run hello-world"
+    register: hello_world_output
+
+  - name: Show output of hello word example
+    debug:
+      msg: "Container Output: {{hello_world_output.stdout}}"
+
