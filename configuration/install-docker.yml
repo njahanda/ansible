@@ -1,5 +1,4 @@
 ---
-
 - name: Install docker on a Centos 7 machine
   hosts: all
 
@@ -31,7 +30,7 @@
   - name: Install Docker
     yum: name=docker state=latest
     
- - name: Start and enable the Docker daemon
+  - name: Start and enable the Docker daemon
     service: name=docker state=started enabled=yes
 
   - name: Test Docker with hello world example
